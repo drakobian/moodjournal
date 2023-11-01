@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,6 +31,7 @@ import com.example.moodjournal.ui.JournalScreen
 import com.example.moodjournal.ui.MoodJournalUiState
 import com.example.moodjournal.ui.MoodJournalViewModel
 import com.example.moodjournal.ui.ThoughtScreen
+import java.time.format.DateTimeFormatter
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -61,45 +65,52 @@ fun MoodJournalApp() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MoodJournalList(
     journals: List<Journal>,
     onJournalPressed: (Journal?) -> Unit
 ) {
     LazyColumn(Modifier.fillMaxWidth()) {
-        item {
-            Text(
-                text = "Journals",
-                modifier = Modifier
-                    .background(Color.LightGray)
-                    .border(1.dp, Color.Black)
-                    .padding(8.dp)
-                    .fillMaxWidth()
-            )
-        }
+//        item {
+//            Text(
+//                text = "Journals",
+//                modifier = Modifier
+//                    .background(Color.LightGray)
+//                    .border(1.dp, Color.Black)
+//                    .padding(8.dp)
+//                    .fillMaxWidth()
+//            )
+//        }
 
         items(journals) {
-            Box(Modifier.clickable {
-                onJournalPressed(it)
-            }) {
+            Card(
+                modifier = Modifier.padding(8.dp),
+                onClick = { onJournalPressed(it) }
+            ) {
                 Text(
-                    text = it.date.toString(),
+                    text = it.date.format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")),
                     modifier = Modifier
-                        .border(1.dp, Color.Black)
-                        .padding(8.dp)
+                        //.border(1.dp, Color.Black)
+                        .padding(16.dp)
                         .fillMaxWidth(),
                 )
             }
         }
 
         item {
-            Text(
-                text = "Add new journal",
-                modifier = Modifier
-                    .border(1.dp, Color.Black)
-                    .padding(8.dp)
-                    .fillMaxWidth()
-            )
+            Card(
+                Modifier.padding(8.dp)
+            ) {
+                Text(
+                    text = "Add new journal",
+                    modifier = Modifier
+                        //.border(1.dp, Color.Black)
+                        .padding(24.dp)
+                        //.fillMaxWidth()
+                )
+            }
         }
     }
 }

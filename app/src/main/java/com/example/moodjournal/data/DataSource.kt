@@ -19,11 +19,17 @@ object DataSource {
     )
 
     val thought2 = Thought(
-        content = "negative thought two. This one is longer, and more negative, if you can believe! ugh.",
+        content = "negative thought two. This one is longer, and more negative, if you can believe! ugh. blah blah blah blah blah blah blah blah blah blah blah blah " +
+                "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah" +
+                " blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah ",
         nowPercent = 77,
         afterPercent = 0,
         distortions = listOf(Distortion.DP, Distortion.MF, Distortion.SH, Distortion.ER, Distortion.SB),
-        positiveThought = "positive thought two :)",
+        positiveThought = "positive thought two :) positive thought two :) positive thought two :) positive thought two :) positive thought two :)" +
+                "positive thought two :) positive thought two :) positive thought two :) positive thought two :) positive thought two :)" +
+                "positive thought two :) positive thought two :) positive thought two :) positive thought two :) positive thought two :) positive thought two :)" +
+                "positive thought two :) positive thought two :) positive thought two :) positive thought two :) positive thought two :) " +
+                "positive thought two :) positive thought two :) positive thought two :)",
         beliefPercent = 88
     )
 

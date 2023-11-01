@@ -13,7 +13,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.example.moodjournal.data.DataSource
 import com.example.moodjournal.model.Emotion
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmotionScreen(emotion: Emotion, onBackPressed: () -> Unit) {
     BackHandler {
@@ -34,9 +46,30 @@ fun EmotionScreen(emotion: Emotion, onBackPressed: () -> Unit) {
         )
 
         Row {
-            Text(text = "Now: ${emotion.nowPercent}%")
-            Text(text = "   Goal: ${emotion.goalPercent}%")
-            Text(text = "   After: ${emotion.afterPercent}%")
+            TextField(
+                value = "${emotion.nowPercent}",
+                onValueChange = {},
+                label = { Text("Now Percentage") },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(4.dp)
+            )
+            TextField(
+                value = "${emotion.goalPercent}",
+                onValueChange = {},
+                label = { Text("Goal Percentage") },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(4.dp)
+            )
+            TextField(
+                value = "${emotion.afterPercent}",
+                onValueChange = {},
+                label = { Text("After Percentage") },
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(4.dp)
+            )
         }
     }
 }
@@ -47,44 +80,61 @@ fun EmotionScreenPreview() {
     EmotionScreen(DataSource.emotion1, {})
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmotionsTable(
     emotions: List<Emotion>,
     onEmotionPressed: (Emotion) -> Unit
 ) {
-    LazyColumn(Modifier.fillMaxWidth()) {
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = MaterialTheme.colorScheme.primaryContainer)
+    ) {
         item {
             Text(
                 text = "Emotions",
                 modifier = Modifier
-                    .background(Color.LightGray)
-                    .border(1.dp, Color.Black)
                     .padding(8.dp)
                     .fillMaxWidth()
             )
+            Divider()
         }
 
         items(emotions) {
-            Box(Modifier.clickable {
-                onEmotionPressed(it)
-            }) {
-                Text(
-                    text = it.content.joinToString(", "),
-                    modifier = Modifier
-                        .border(1.dp, Color.Black)
-                        .padding(8.dp)
-                        .fillMaxWidth(),
+            ListItem(
+                modifier = Modifier
+                    .clickable{ onEmotionPressed(it) },
+                headlineText = {
+                    Text(it.content.joinToString(", "))
+                },
+                trailingContent = {
+                    Icon(
+                        Icons.Filled.KeyboardArrowRight,
+                        contentDescription = null
+                    )
+                },
+                colors = ListItemDefaults.colors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
                 )
-            }
+            )
         }
 
         item {
-            Text(
-                text = "Add new emotion",
-                modifier = Modifier
-                    .border(1.dp, Color.Black)
-                    .padding(8.dp)
-                    .fillMaxWidth()
+            Divider()
+            ListItem(
+                headlineText = {
+                    Text("Add new emotion")
+                },
+                trailingContent = {
+                    Icon(
+                        Icons.Filled.Add,
+                        contentDescription = null
+                    )
+                },
+                colors = ListItemDefaults.colors(
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer
+                )
             )
         }
     }
