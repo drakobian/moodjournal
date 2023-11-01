@@ -33,125 +33,125 @@ import com.example.moodjournal.ui.MoodJournalViewModel
 import com.example.moodjournal.ui.ThoughtScreen
 import java.time.format.DateTimeFormatter
 
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun MoodJournalApp() {
-    val viewModel: MoodJournalViewModel = viewModel()
-    val uiState = viewModel.uiState.collectAsState().value
-
-    //// todo: hmmmmm. I may accept this at the moment
-    // but also could be a fun lil' experiment to branch here
-    // and see if I like using Navigation more :)))
-    if (uiState.currentSelectedJournal == null) {
-        MoodJournalList(
-            journals = DataSource.journals,
-            onJournalPressed = {
-                viewModel.updateCurrentJournal(it)
-            }
-        )
-    } else {
-        MoodJournalScreen(
-            uiState = uiState,
-            onThoughtPressed = {
-                viewModel.updateCurrentThought(it)
-            },
-            onEmotionPressed = {
-                viewModel.updateCurrentEmotion(it)
-            },
-            onBackPressed = {
-                viewModel.updateCurrentJournal(null)
-            }
-        )
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MoodJournalList(
-    journals: List<Journal>,
-    onJournalPressed: (Journal?) -> Unit
-) {
-    LazyColumn(Modifier.fillMaxWidth()) {
-//        item {
-//            Text(
-//                text = "Journals",
-//                modifier = Modifier
-//                    .background(Color.LightGray)
-//                    .border(1.dp, Color.Black)
-//                    .padding(8.dp)
-//                    .fillMaxWidth()
-//            )
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Composable
+//fun MoodJournalApp() {
+//    val viewModel: MoodJournalViewModel = viewModel()
+//    val uiState = viewModel.uiState.collectAsState().value
+//
+//    //// todo: hmmmmm. I may accept this at the moment
+//    // but also could be a fun lil' experiment to branch here
+//    // and see if I like using Navigation more :)))
+//    if (uiState.currentSelectedJournal == null) {
+//        MoodJournalList(
+//            journals = DataSource.journals,
+//            onJournalPressed = {
+//                viewModel.updateCurrentJournal(it)
+//            }
+//        )
+//    } else {
+//        MoodJournalScreen(
+//            uiState = uiState,
+//            onThoughtPressed = {
+//                viewModel.updateCurrentThought(it)
+//            },
+//            onEmotionPressed = {
+//                viewModel.updateCurrentEmotion(it)
+//            },
+//            onBackPressed = {
+//                viewModel.updateCurrentJournal(null)
+//            }
+//        )
+//    }
+//}
+//
+//@RequiresApi(Build.VERSION_CODES.O)
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun MoodJournalList(
+//    journals: List<Journal>,
+//    onJournalPressed: (Journal?) -> Unit
+//) {
+//    LazyColumn(Modifier.fillMaxWidth()) {
+////        item {
+////            Text(
+////                text = "Journals",
+////                modifier = Modifier
+////                    .background(Color.LightGray)
+////                    .border(1.dp, Color.Black)
+////                    .padding(8.dp)
+////                    .fillMaxWidth()
+////            )
+////        }
+//
+//        items(journals) {
+//            Card(
+//                modifier = Modifier.padding(8.dp),
+//                onClick = { onJournalPressed(it) }
+//            ) {
+//                Text(
+//                    text = it.date.format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")),
+//                    modifier = Modifier
+//                        //.border(1.dp, Color.Black)
+//                        .padding(16.dp)
+//                        .fillMaxWidth(),
+//                )
+//            }
 //        }
-
-        items(journals) {
-            Card(
-                modifier = Modifier.padding(8.dp),
-                onClick = { onJournalPressed(it) }
-            ) {
-                Text(
-                    text = it.date.format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")),
-                    modifier = Modifier
-                        //.border(1.dp, Color.Black)
-                        .padding(16.dp)
-                        .fillMaxWidth(),
-                )
-            }
-        }
-
-        item {
-            Card(
-                Modifier.padding(8.dp)
-            ) {
-                Text(
-                    text = "Add new journal",
-                    modifier = Modifier
-                        //.border(1.dp, Color.Black)
-                        .padding(24.dp)
-                        //.fillMaxWidth()
-                )
-            }
-        }
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-fun MoodJournalScreen(
-    uiState: MoodJournalUiState,
-    onThoughtPressed: (Thought?) -> Unit,
-    onEmotionPressed: (Emotion?) -> Unit,
-    onBackPressed: () -> Unit,
-    ) {
-    if (uiState.currentSelectedThought == null && uiState.currentSelectedEmotion == null) {
-        JournalScreen(
-            // todo: shouldn't need to do this check here :)
-            uiState.currentSelectedJournal!!,
-            onThoughtPressed,
-            onEmotionPressed,
-            onBackPressed,
-        )
-    } else if (uiState.currentSelectedEmotion != null) {
-        EmotionScreen(
-            emotion = uiState.currentSelectedEmotion,
-            onBackPressed = {
-                onEmotionPressed(null)
-            }
-        )
-    }
-    else if (uiState.currentSelectedThought != null) {
-        ThoughtScreen(
-            thought = uiState.currentSelectedThought,
-            onBackPressed = {
-                onThoughtPressed(null)
-            }
-        )
-    }
-}
-
-@RequiresApi(Build.VERSION_CODES.O)
-@Composable
-@Preview
-fun MoodJournalAppPreview() {
-    MoodJournalApp()
-}
+//
+//        item {
+//            Card(
+//                Modifier.padding(8.dp)
+//            ) {
+//                Text(
+//                    text = "Add new journal",
+//                    modifier = Modifier
+//                        //.border(1.dp, Color.Black)
+//                        .padding(24.dp)
+//                        //.fillMaxWidth()
+//                )
+//            }
+//        }
+//    }
+//}
+//
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Composable
+//fun MoodJournalScreen(
+//    uiState: MoodJournalUiState,
+//    onThoughtPressed: (Thought?) -> Unit,
+//    onEmotionPressed: (Emotion?) -> Unit,
+//    onBackPressed: () -> Unit,
+//    ) {
+//    if (uiState.currentSelectedThought == null && uiState.currentSelectedEmotion == null) {
+//        JournalScreen(
+//            // todo: shouldn't need to do this check here :)
+//            uiState.currentSelectedJournal!!,
+//            onThoughtPressed,
+//            onEmotionPressed,
+//            onBackPressed,
+//        )
+//    } else if (uiState.currentSelectedEmotion != null) {
+//        EmotionScreen(
+//            emotion = uiState.currentSelectedEmotion,
+//            onBackPressed = {
+//                onEmotionPressed(null)
+//            }
+//        )
+//    }
+//    else if (uiState.currentSelectedThought != null) {
+//        ThoughtScreen(
+//            thought = uiState.currentSelectedThought,
+//            onBackPressed = {
+//                onThoughtPressed(null)
+//            }
+//        )
+//    }
+//}
+//
+//@RequiresApi(Build.VERSION_CODES.O)
+//@Composable
+//@Preview
+//fun MoodJournalAppPreview() {
+//    MoodJournalApp()
+//}
