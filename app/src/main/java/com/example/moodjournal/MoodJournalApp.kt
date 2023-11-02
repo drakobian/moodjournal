@@ -12,14 +12,26 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.moodjournal.ui.navigation.MoodJournalNavHost
+import com.example.moodjournal.ui.theme.MoodJournalTheme
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MoodJournalApp(navController: NavHostController = rememberNavController()) {
     MoodJournalNavHost(navController = navController)
+}
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Preview
+@Composable
+fun MoodJournalAppPreview() {
+    MoodJournalTheme {
+        MoodJournalApp()
+    }
 }
 
 @Composable
