@@ -9,6 +9,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.moodjournal.ui.home.HomeDestination
 import com.example.moodjournal.ui.home.HomeScreen
+import com.example.moodjournal.ui.journal.JournalEntryDestination
+import com.example.moodjournal.ui.journal.JournalEntryScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -23,8 +25,15 @@ fun MoodJournalNavHost(
     ) {
         composable(route = HomeDestination.route) {
             HomeScreen(
-                navigateToJournalEntry = {},
+                navigateToJournalEntry = { navController.navigate(JournalEntryDestination.route) },
                 navigateToJournalUpdate = {},
+            )
+        }
+
+        composable(route = JournalEntryDestination.route) {
+            JournalEntryScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
             )
         }
     }

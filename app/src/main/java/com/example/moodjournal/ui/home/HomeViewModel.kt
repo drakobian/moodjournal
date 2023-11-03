@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moodjournal.data.DataSource
 import com.example.moodjournal.data.JournalRepository
-import com.example.moodjournal.model.Journal
+import com.example.moodjournal.data.Journal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.stateIn
 @RequiresApi(Build.VERSION_CODES.O)
 class HomeViewModel(journalRepository: JournalRepository) : ViewModel() {
     // todo: use repo
-    val homeUiState: StateFlow<HomeUiState> = flowOf(DataSource.journals).map{ HomeUiState(it) }
+    val homeUiState: StateFlow<HomeUiState> = journalRepository.getAllJournals().map{ HomeUiState(it) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
