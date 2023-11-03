@@ -2,6 +2,7 @@ package com.example.moodjournal.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import java.time.LocalDate
 
 @Entity(tableName = "journals")

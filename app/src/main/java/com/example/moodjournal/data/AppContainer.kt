@@ -3,9 +3,11 @@ package com.example.moodjournal.data
 import android.content.Context
 
 interface AppContainer {
-    // todo: add repository(s?)
+    val journalRepository: JournalRepository
 }
 
 class AppDataContainer(private val context: Context) : AppContainer {
-    // todo: add repo
+    override val journalRepository: JournalRepository by lazy {
+        OfflineJournalRepository(JournalDatabase.getDatabase(context).journalDao())
+    }
 }
