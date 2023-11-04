@@ -1,10 +1,11 @@
-package com.example.moodjournal.data
+package com.example.moodjournal.data.journal
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.moodjournal.data.Converters
 
 @Database(entities = [Journal::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)

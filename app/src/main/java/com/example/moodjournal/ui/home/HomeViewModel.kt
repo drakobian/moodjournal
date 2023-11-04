@@ -4,13 +4,10 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moodjournal.data.DataSource
-import com.example.moodjournal.data.JournalRepository
-import com.example.moodjournal.data.Journal
-import kotlinx.coroutines.flow.Flow
+import com.example.moodjournal.data.journal.JournalRepository
+import com.example.moodjournal.data.journal.Journal
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 

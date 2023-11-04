@@ -6,8 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.moodjournal.data.Journal
-import com.example.moodjournal.data.JournalRepository
+import com.example.moodjournal.data.journal.Journal
+import com.example.moodjournal.data.journal.JournalRepository
 import java.time.LocalDate
 
 /**

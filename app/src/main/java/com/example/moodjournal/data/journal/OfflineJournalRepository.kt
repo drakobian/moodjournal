@@ -1,8 +1,8 @@
-package com.example.moodjournal.data
+package com.example.moodjournal.data.journal
 
 import kotlinx.coroutines.flow.Flow
 
-class OfflineJournalRepository(private val journalDao: JournalDao) : JournalRepository  {
+class OfflineJournalRepository(private val journalDao: JournalDao) : JournalRepository {
     override fun getJournal(id: Int): Flow<Journal> = journalDao.getJournal(id)
 
     override fun getAllJournals(): Flow<List<Journal>> = journalDao.getAllJournals()

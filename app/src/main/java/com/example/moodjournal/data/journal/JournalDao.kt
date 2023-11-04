@@ -1,4 +1,4 @@
-package com.example.moodjournal.data
+package com.example.moodjournal.data.journal
 
 import androidx.room.Dao
 import androidx.room.Delete

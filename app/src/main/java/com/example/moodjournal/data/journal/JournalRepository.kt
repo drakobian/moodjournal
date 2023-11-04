@@ -1,4 +1,4 @@
-package com.example.moodjournal.data
+package com.example.moodjournal.data.journal
 
 import kotlinx.coroutines.flow.Flow
 

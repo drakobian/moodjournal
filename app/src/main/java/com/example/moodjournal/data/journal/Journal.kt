@@ -1,4 +1,4 @@
-package com.example.moodjournal.data
+package com.example.moodjournal.data.journal
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

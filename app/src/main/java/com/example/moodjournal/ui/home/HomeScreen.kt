@@ -29,8 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moodjournal.MoodJournalTopAppBar
-import com.example.moodjournal.data.DataSource
-import com.example.moodjournal.data.Journal
+import com.example.moodjournal.data.journal.Journal
 import com.example.moodjournal.ui.AppViewModelProvider
 import com.example.moodjournal.ui.navigation.NavigationDestination
 import com.example.moodjournal.ui.theme.MoodJournalTheme
