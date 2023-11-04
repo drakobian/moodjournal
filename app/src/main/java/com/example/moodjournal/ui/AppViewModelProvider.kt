@@ -18,6 +18,7 @@ object AppViewModelProvider {
         }
 
         initializer {
+            // todo: update to also take emotionRepo
             JournalEntryViewModel(moodJournalApplication().container.journalRepository)
         }
     }

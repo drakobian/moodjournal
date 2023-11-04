@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,21 +18,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moodjournal.MoodJournalTopAppBar
+import com.example.moodjournal.data.emotion.Emotion
 import com.example.moodjournal.ui.AppViewModelProvider
+import com.example.moodjournal.ui.journal.emotion.EmotionsTable
 import com.example.moodjournal.ui.navigation.NavigationDestination
 import com.example.moodjournal.ui.theme.MoodJournalTheme
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Currency
-import java.util.Locale
 
 object JournalEntryDestination : NavigationDestination {
     override val route = "journal_entry"
@@ -74,7 +70,8 @@ fun JournalEntryScreen(
             },
             modifier = Modifier
                 .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
+                // todo: do something about this
+                //.verticalScroll(rememberScrollState())
                 .fillMaxWidth()
         )
     }
@@ -96,6 +93,13 @@ fun JournalEntryBody(
             onValueChange = onJournalValueChange,
             modifier = Modifier.fillMaxWidth()
         )
+        // todo: add Emotions table, which
+        // means need to fetch Emotions attached to this
+        // journal
+        EmotionsTable(emotions = listOf(
+            Emotion(1, 1, "sad, depressed", 99, 1, 5)
+        ), onEmotionPressed = {})
+
         Button(
             onClick = onSaveClick,
             enabled = journalUiState.isEntryValid,

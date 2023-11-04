@@ -54,7 +54,8 @@ fun HomeScreen(
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        // todo: figure out what to do about this, great
+        //modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             MoodJournalTopAppBar(
                 title = "Mood Journals",
