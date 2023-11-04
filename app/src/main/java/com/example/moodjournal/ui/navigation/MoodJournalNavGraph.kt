@@ -30,7 +30,7 @@ fun MoodJournalNavHost(
         composable(route = HomeDestination.route) {
             HomeScreen(
                 navigateToJournalEntry = { navController.navigate(JournalEntryDestination.route) },
-                navigateToJournalUpdate = {},
+                navigateToJournalUpdate = { navController.navigate("${JournalDetailsDestination.route}/${it}") },
             )
         }
 
@@ -47,7 +47,10 @@ fun MoodJournalNavHost(
                 type = NavType.IntType
             })
         ) {
-            JournalDetailsScreen()
+            JournalDetailsScreen(
+                navigateToEditJournal = { },
+                navigateBack = {}
+            )
         }
     }
 }

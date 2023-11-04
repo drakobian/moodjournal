@@ -65,6 +65,8 @@ fun JournalEntryScreen(
                 // be cancelled - since the scope is bound to composition.
                 coroutineScope.launch {
                     viewModel.saveJournal()
+
+                    //todo: navigate to journal details instead
                     navigateBack()
                 }
             },
@@ -96,9 +98,7 @@ fun JournalEntryBody(
         // todo: add Emotions table, which
         // means need to fetch Emotions attached to this
         // journal
-        EmotionsTable(emotions = listOf(
-            Emotion(1, 1, "sad, depressed", 99, 1, 5)
-        ), onEmotionPressed = {})
+        //EmotionsTable(emotions = listOf(), onEmotionPressed = {})
 
         Button(
             onClick = onSaveClick,
