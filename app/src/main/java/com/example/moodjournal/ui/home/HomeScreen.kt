@@ -34,6 +34,7 @@ import com.example.moodjournal.data.Journal
 import com.example.moodjournal.ui.AppViewModelProvider
 import com.example.moodjournal.ui.navigation.NavigationDestination
 import com.example.moodjournal.ui.theme.MoodJournalTheme
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 object HomeDestination : NavigationDestination {
@@ -124,7 +125,7 @@ fun JournalList(
         items(journals) {
             Card(
                 modifier = Modifier.padding(8.dp),
-                onClick = { onJournalPressed(0) }
+                onClick = { onJournalPressed(it.id) }
             ) {
                 Text(
                     text = it.date.format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")),
@@ -139,10 +140,10 @@ fun JournalList(
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeBodyPreview() {
     MoodJournalTheme {
-        HomeBody(listOf(), onJournalClick = {})
+        HomeBody(listOf(Journal(id = 0, event = "wow", date = LocalDate.now())), onJournalClick = {})
     }
 }

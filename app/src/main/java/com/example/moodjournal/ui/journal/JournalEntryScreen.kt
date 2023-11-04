@@ -31,6 +31,7 @@ import com.example.moodjournal.ui.navigation.NavigationDestination
 import com.example.moodjournal.ui.theme.MoodJournalTheme
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Currency
 import java.util.Locale
 
@@ -52,7 +53,7 @@ fun JournalEntryScreen(
     Scaffold(
         topBar = {
             MoodJournalTopAppBar(
-                title = "Journal : but get the date :) ",
+                title = viewModel.journalUiState.journalDetails.date.format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")),
                 canNavigateBack = canNavigateBack,
                 navigateUp = onNavigateUp
             )
@@ -101,7 +102,7 @@ fun JournalEntryBody(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "save")
+            Text(text = "Save")
         }
     }
 }
@@ -121,7 +122,7 @@ fun JournalInputForm(
         OutlinedTextField(
             value = journalDetails.event,
             onValueChange = { onValueChange(journalDetails.copy(event = it)) },
-            label = { Text("mmhmm event") },
+            label = { Text("Event") },
 //            colors = OutlinedTextFieldDefaults.colors(
 //                focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
 //                unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
