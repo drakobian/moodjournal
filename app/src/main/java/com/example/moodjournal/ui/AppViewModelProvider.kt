@@ -10,6 +10,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.moodjournal.MoodJournalApplication
 import com.example.moodjournal.ui.home.HomeViewModel
 import com.example.moodjournal.ui.journal.JournalDetailsViewModel
+import com.example.moodjournal.ui.journal.JournalEditViewModel
 import com.example.moodjournal.ui.journal.JournalEntryViewModel
 import com.example.moodjournal.ui.journal.emotion.EmotionEntryViewModel
 import com.example.moodjournal.ui.journal.thought.ThoughtEntryViewModel
@@ -31,6 +32,13 @@ object AppViewModelProvider {
                 moodJournalApplication().container.journalRepository,
                 moodJournalApplication().container.emotionRepository,
                 moodJournalApplication().container.thoughtRepository,
+            )
+        }
+
+        initializer {
+            JournalEditViewModel(
+                this.createSavedStateHandle(),
+                moodJournalApplication().container.journalRepository
             )
         }
 

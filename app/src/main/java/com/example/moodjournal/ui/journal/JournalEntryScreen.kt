@@ -96,7 +96,6 @@ fun JournalEntryBody(
             modifier = Modifier.fillMaxWidth()
         )
 
-
         Button(
             onClick = onSaveClick,
             enabled = journalUiState.isEntryValid,
@@ -124,36 +123,10 @@ fun JournalInputForm(
             value = journalDetails.event,
             onValueChange = { onValueChange(journalDetails.copy(event = it)) },
             label = { Text("Event") },
-//            colors = OutlinedTextFieldDefaults.colors(
-//                focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-//                unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-//                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-//            ),
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
         )
-//        OutlinedTextField(
-//            value = journalDetails.price,
-//            onValueChange = { onValueChange(journalDetails.copy(price = it)) },
-//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-//            label = { Text(stringResource(R.string.journal_price_req)) },
-//            colors = OutlinedTextFieldDefaults.colors(
-//                focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-//                unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-//                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-//            ),
-//            leadingIcon = { Text(Currency.getInstance(Locale.getDefault()).symbol) },
-//            modifier = Modifier.fillMaxWidth(),
-//            enabled = enabled,
-//            singleLine = true
-//        )
-//        if (enabled) {
-//            Text(
-//                text = "requried?",
-//                modifier = Modifier.padding(start = 12.dp)
-//            )
-//        }
     }
 }
 
