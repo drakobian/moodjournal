@@ -15,6 +15,8 @@ import com.example.moodjournal.ui.journal.JournalDetailsDestination
 import com.example.moodjournal.ui.journal.JournalDetailsScreen
 import com.example.moodjournal.ui.journal.JournalEntryDestination
 import com.example.moodjournal.ui.journal.JournalEntryScreen
+import com.example.moodjournal.ui.journal.emotion.EmotionEntryDestination
+import com.example.moodjournal.ui.journal.emotion.EmotionEntryScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -49,8 +51,23 @@ fun MoodJournalNavHost(
         ) {
             JournalDetailsScreen(
                 navigateToEditJournal = { },
-                navigateBack = {}
+                navigateBack = {},
+                navigateToEmotionEntry = { journalId ->
+                    {
+                        // this should navigate to...? emotion_entry/:journal_id ? ???? heh
+                        navController.navigate("${EmotionEntryDestination.route}/${journalId}")
+                    }
+                }
             )
+        }
+
+        composable(
+            route = EmotionEntryDestination.routeWithArgs,
+            arguments = listOf(navArgument(EmotionEntryDestination.journalIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            EmotionEntryScreen( navigateBack = { navController.popBackStack() })
         }
     }
 }

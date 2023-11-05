@@ -11,6 +11,7 @@ import com.example.moodjournal.MoodJournalApplication
 import com.example.moodjournal.ui.home.HomeViewModel
 import com.example.moodjournal.ui.journal.JournalDetailsViewModel
 import com.example.moodjournal.ui.journal.JournalEntryViewModel
+import com.example.moodjournal.ui.journal.emotion.EmotionEntryViewModel
 
 object AppViewModelProvider {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -27,6 +28,13 @@ object AppViewModelProvider {
             JournalDetailsViewModel(
                 this.createSavedStateHandle(),
                 moodJournalApplication().container.journalRepository,
+                moodJournalApplication().container.emotionRepository,
+            )
+        }
+
+        initializer {
+            EmotionEntryViewModel(
+                this.createSavedStateHandle(),
                 moodJournalApplication().container.emotionRepository,
             )
         }

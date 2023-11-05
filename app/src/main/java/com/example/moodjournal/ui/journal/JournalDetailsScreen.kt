@@ -18,7 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moodjournal.MoodJournalTopAppBar
 import com.example.moodjournal.ui.AppViewModelProvider
+import com.example.moodjournal.ui.journal.emotion.EmotionsTable
 import com.example.moodjournal.ui.navigation.NavigationDestination
+import java.time.format.DateTimeFormatter
 
 object JournalDetailsDestination : NavigationDestination {
     override val route = "journal_details"
@@ -33,6 +35,7 @@ object JournalDetailsDestination : NavigationDestination {
 fun JournalDetailsScreen(
     navigateToEditJournal: (Int) -> Unit,
     navigateBack: () -> Unit,
+    navigateToEmotionEntry: (Int) -> () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: JournalDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
@@ -41,7 +44,11 @@ fun JournalDetailsScreen(
 
     Scaffold(
         topBar = {
-            MoodJournalTopAppBar(title = "journal details", canNavigateBack = true, navigateUp = navigateBack )
+            MoodJournalTopAppBar(
+                title = uiState.value.journalDetails.date.format(DateTimeFormatter.ofPattern("MMMM dd, uuuu")),
+                canNavigateBack = true,
+                navigateUp = navigateBack
+            )
         }, floatingActionButton = {
             FloatingActionButton(onClick = { navigateToEditJournal(uiState.value.journalDetails.id) }) {
                 Icon(imageVector = Icons.Default.Edit, contentDescription = null)
@@ -50,6 +57,12 @@ fun JournalDetailsScreen(
     ) { innerPadding ->
         Column(modifier.padding(innerPadding)) {
             Text(uiState.value.journalDetails.event)
+
+            EmotionsTable(
+                emotions = uiState.value.emotionDetails,
+                onEmotionPressed = {},
+                navigateToEmotionEntry = navigateToEmotionEntry(uiState.value.journalDetails.id)
+            )
         }
     }
 }

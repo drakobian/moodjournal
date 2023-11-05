@@ -95,10 +95,7 @@ fun JournalEntryBody(
             onValueChange = onJournalValueChange,
             modifier = Modifier.fillMaxWidth()
         )
-        // todo: add Emotions table, which
-        // means need to fetch Emotions attached to this
-        // journal
-        //EmotionsTable(emotions = listOf(), onEmotionPressed = {})
+
 
         Button(
             onClick = onSaveClick,

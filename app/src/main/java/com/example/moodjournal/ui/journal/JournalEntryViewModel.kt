@@ -43,9 +43,7 @@ class JournalEntryViewModel(private val journalRepository: JournalRepository) : 
 
     private fun validateInput(uiState: JournalDetails = journalUiState.journalDetails): Boolean {
         return with(uiState) {
-            // todo: validate
-            true
-            //name.isNotBlank() && price.isNotBlank() && quantity.isNotBlank()
+            event.isNotBlank()
         }
     }
 }

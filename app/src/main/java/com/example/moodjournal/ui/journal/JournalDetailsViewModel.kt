@@ -31,6 +31,9 @@ class JournalDetailsViewModel(
     val uiState: StateFlow<JournalDetailsUiState> =
         journalRepository.getJournal(journalId)
             .filterNotNull()
+            // todo: oh instead of this should i change the journal query
+            // to return a multimap of journal -> list(emotion)?
+            // hmm but what about adding on list(thought) as well hmmmmmmmm fuck that i guess :)
             .combine(emotionRepository.getAllEmotionsForJournal(journalId))
             { journal, emotions ->
                 JournalDetailsUiState(

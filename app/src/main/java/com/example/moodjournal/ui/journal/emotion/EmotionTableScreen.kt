@@ -24,8 +24,9 @@ import com.example.moodjournal.data.emotion.Emotion
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmotionsTable(
-    emotions: List<Emotion>,
-    onEmotionPressed: (Emotion) -> Unit
+    emotions: List<EmotionDetails>,
+    onEmotionPressed: (EmotionDetails) -> Unit,
+    navigateToEmotionEntry: () -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -64,6 +65,8 @@ fun EmotionsTable(
         item {
             Divider()
             ListItem(
+                modifier = Modifier
+                    .clickable{ navigateToEmotionEntry() },
                 headlineText = {
                     Text("Add new emotion")
                 },
