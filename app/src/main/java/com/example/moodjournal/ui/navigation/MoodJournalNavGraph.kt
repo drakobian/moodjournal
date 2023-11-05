@@ -17,6 +17,8 @@ import com.example.moodjournal.ui.journal.JournalEntryDestination
 import com.example.moodjournal.ui.journal.JournalEntryScreen
 import com.example.moodjournal.ui.journal.emotion.EmotionEntryDestination
 import com.example.moodjournal.ui.journal.emotion.EmotionEntryScreen
+import com.example.moodjournal.ui.journal.thought.ThoughtEntryDestination
+import com.example.moodjournal.ui.journal.thought.ThoughtEntryScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -56,6 +58,11 @@ fun MoodJournalNavHost(
                     {
                         navController.navigate("${EmotionEntryDestination.route}/${journalId}")
                     }
+                },
+                navigateToThoughtEntry = { journalId ->
+                    {
+                        navController.navigate("${ThoughtEntryDestination.route}/${journalId}")
+                    }
                 }
             )
         }
@@ -67,6 +74,15 @@ fun MoodJournalNavHost(
             })
         ) {
             EmotionEntryScreen( navigateBack = { navController.popBackStack() })
+        }
+
+        composable(
+            route = ThoughtEntryDestination.routeWithArgs,
+            arguments = listOf(navArgument(ThoughtEntryDestination.journalIdArg) {
+                type = NavType.IntType
+            })
+        ) {
+            ThoughtEntryScreen( navigateBack = { navController.popBackStack() })
         }
     }
 }

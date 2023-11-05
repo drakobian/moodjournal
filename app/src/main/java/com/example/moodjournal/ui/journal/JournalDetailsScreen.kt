@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moodjournal.MoodJournalTopAppBar
 import com.example.moodjournal.ui.AppViewModelProvider
 import com.example.moodjournal.ui.journal.emotion.EmotionsTable
+import com.example.moodjournal.ui.journal.thought.ThoughtsTable
 import com.example.moodjournal.ui.navigation.NavigationDestination
 import java.time.format.DateTimeFormatter
 
@@ -36,6 +37,7 @@ fun JournalDetailsScreen(
     navigateToEditJournal: (Int) -> Unit,
     navigateBack: () -> Unit,
     navigateToEmotionEntry: (Int) -> () -> Unit,
+    navigateToThoughtEntry: (Int) -> () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: JournalDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
@@ -58,10 +60,18 @@ fun JournalDetailsScreen(
         Column(modifier.padding(innerPadding)) {
             Text(uiState.value.journalDetails.event)
 
+            // todo: limit max height of these tables? and maybe of the text above too to make sure
+            // everything stays on the screen nicely...
             EmotionsTable(
                 emotions = uiState.value.emotionDetails,
                 onEmotionPressed = {},
                 navigateToEmotionEntry = navigateToEmotionEntry(uiState.value.journalDetails.id)
+            )
+
+            ThoughtsTable(
+                thoughts = uiState.value.thoughtDetails,
+                onThoughtPressed = {},
+                navigateToThoughtEntry = navigateToThoughtEntry(uiState.value.journalDetails.id)
             )
         }
     }

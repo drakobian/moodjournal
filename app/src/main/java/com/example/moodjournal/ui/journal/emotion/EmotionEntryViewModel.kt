@@ -1,6 +1,5 @@
 package com.example.moodjournal.ui.journal.emotion
 
-import android.health.connect.datatypes.units.Percentage
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
