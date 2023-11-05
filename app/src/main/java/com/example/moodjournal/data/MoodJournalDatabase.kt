@@ -9,12 +9,15 @@ import com.example.moodjournal.data.emotion.Emotion
 import com.example.moodjournal.data.emotion.EmotionDao
 import com.example.moodjournal.data.journal.Journal
 import com.example.moodjournal.data.journal.JournalDao
+import com.example.moodjournal.data.thought.Thought
+import com.example.moodjournal.data.thought.ThoughtDao
 
-@Database(entities = [Journal::class, Emotion::class], version = 2, exportSchema = false)
+@Database(entities = [Journal::class, Emotion::class, Thought::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class MoodJournalDatabase : RoomDatabase() {
     abstract fun journalDao() : JournalDao
     abstract fun emotionDao() : EmotionDao
+    abstract fun thoughtDao() : ThoughtDao
 
     companion object {
         @Volatile

@@ -54,7 +54,6 @@ fun MoodJournalNavHost(
                 navigateBack = {},
                 navigateToEmotionEntry = { journalId ->
                     {
-                        // this should navigate to...? emotion_entry/:journal_id ? ???? heh
                         navController.navigate("${EmotionEntryDestination.route}/${journalId}")
                     }
                 }
