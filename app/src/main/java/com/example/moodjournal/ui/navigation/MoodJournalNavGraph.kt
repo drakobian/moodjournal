@@ -87,7 +87,10 @@ fun MoodJournalNavHost(
                 type = NavType.IntType
             })
         ) {
-            EmotionEntryScreen( navigateBack = { navController.popBackStack() })
+            EmotionEntryScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
+            )
         }
 
         composable(
