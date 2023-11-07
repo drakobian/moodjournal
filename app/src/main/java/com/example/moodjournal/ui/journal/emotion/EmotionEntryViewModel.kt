@@ -72,3 +72,9 @@ fun Emotion.toEmotionDetails(): EmotionDetails = EmotionDetails(
     goalPercent = goalPercent,
     afterPercent = afterPercent,
 )
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun Emotion.toEmotionUiState(isEntryValid: Boolean = false): EmotionUiState = EmotionUiState(
+    emotionDetails = this.toEmotionDetails(),
+    isEntryValid = isEntryValid,
+)

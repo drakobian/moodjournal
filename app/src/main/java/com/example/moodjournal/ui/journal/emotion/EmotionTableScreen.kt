@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun EmotionsTable(
     emotions: List<EmotionDetails>,
-    onEmotionPressed: (EmotionDetails) -> Unit,
+    onEmotionPressed: (Int) -> Unit,
     navigateToEmotionEntry: () -> Unit,
 ) {
     LazyColumn(
@@ -45,7 +45,7 @@ fun EmotionsTable(
         items(emotions) {
             ListItem(
                 modifier = Modifier
-                    .clickable{ onEmotionPressed(it) },
+                    .clickable{ onEmotionPressed(it.id) },
                 headlineText = {
                     Text(it.content)
                 },

@@ -38,6 +38,7 @@ fun JournalDetailsScreen(
     navigateBack: () -> Unit,
     navigateToEmotionEntry: (Int) -> () -> Unit,
     navigateToThoughtEntry: (Int) -> () -> Unit,
+    navigateToEmotionEdit: (Int) -> (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: JournalDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
@@ -64,7 +65,7 @@ fun JournalDetailsScreen(
             // everything stays on the screen nicely...
             EmotionsTable(
                 emotions = uiState.value.emotionDetails,
-                onEmotionPressed = {},
+                onEmotionPressed = navigateToEmotionEdit(uiState.value.journalDetails.id),
                 navigateToEmotionEntry = navigateToEmotionEntry(uiState.value.journalDetails.id)
             )
 
