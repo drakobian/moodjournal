@@ -123,7 +123,10 @@ fun MoodJournalNavHost(
                 type = NavType.IntType
             })
         ) {
-            ThoughtEntryScreen( navigateBack = { navController.popBackStack() })
+            ThoughtEntryScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
+            )
         }
     }
 }

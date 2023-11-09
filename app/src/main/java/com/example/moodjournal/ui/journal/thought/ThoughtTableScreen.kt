@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ThoughtsTable(
     thoughts: List<ThoughtDetails>,
-    onThoughtPressed: (ThoughtDetails) -> Unit,
+    onThoughtPressed: (Int) -> Unit,
     navigateToThoughtEntry: () -> Unit,
 ) {
     LazyColumn(
@@ -45,7 +45,7 @@ fun ThoughtsTable(
         items(thoughts) {
             ListItem(
                 modifier = Modifier
-                    .clickable{ onThoughtPressed(it) },
+                    .clickable{ onThoughtPressed(it.id) },
                 headlineText = {
                     Text(it.content)
                 },
