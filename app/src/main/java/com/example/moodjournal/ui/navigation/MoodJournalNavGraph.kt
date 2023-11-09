@@ -21,6 +21,8 @@ import com.example.moodjournal.ui.journal.emotion.EmotionEditDestination
 import com.example.moodjournal.ui.journal.emotion.EmotionEditScreen
 import com.example.moodjournal.ui.journal.emotion.EmotionEntryDestination
 import com.example.moodjournal.ui.journal.emotion.EmotionEntryScreen
+import com.example.moodjournal.ui.journal.thought.ThoughtEditDestination
+import com.example.moodjournal.ui.journal.thought.ThoughtEditScreen
 import com.example.moodjournal.ui.journal.thought.ThoughtEntryDestination
 import com.example.moodjournal.ui.journal.thought.ThoughtEntryScreen
 
@@ -84,6 +86,11 @@ fun MoodJournalNavHost(
                     { emotionId ->
                             navController.navigate("${EmotionEditDestination.route}/${journalId}/${emotionId}")
                     }
+                },
+                navigateToThoughtEdit = { journalId ->
+                    { thoughtId ->
+                        navController.navigate("${ThoughtEditDestination.route}/${journalId}/${thoughtId}")
+                    }
                 }
             )
         }
@@ -124,6 +131,23 @@ fun MoodJournalNavHost(
             })
         ) {
             ThoughtEntryScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
+            )
+        }
+
+        composable(
+            route = ThoughtEditDestination.routeWithArgs,
+            arguments = listOf(
+                navArgument(ThoughtEditDestination.journalIdArg) {
+                    type = NavType.IntType
+                },
+                navArgument(ThoughtEditDestination.thoughtIdArg) {
+                    type = NavType.IntType
+                },
+            )
+        ) {
+            ThoughtEditScreen(
                 navigateBack = { navController.popBackStack() },
                 onNavigateUp = { navController.navigateUp() }
             )

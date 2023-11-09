@@ -14,6 +14,7 @@ import com.example.moodjournal.ui.journal.JournalEditViewModel
 import com.example.moodjournal.ui.journal.JournalEntryViewModel
 import com.example.moodjournal.ui.journal.emotion.EmotionEditViewModel
 import com.example.moodjournal.ui.journal.emotion.EmotionEntryViewModel
+import com.example.moodjournal.ui.journal.thought.ThoughtEditViewModel
 import com.example.moodjournal.ui.journal.thought.ThoughtEntryViewModel
 
 object AppViewModelProvider {
@@ -61,6 +62,13 @@ object AppViewModelProvider {
             ThoughtEntryViewModel(
                 this.createSavedStateHandle(),
                 moodJournalApplication().container.thoughtRepository,
+            )
+        }
+
+        initializer {
+            ThoughtEditViewModel(
+                this.createSavedStateHandle(),
+                moodJournalApplication().container.thoughtRepository
             )
         }
     }

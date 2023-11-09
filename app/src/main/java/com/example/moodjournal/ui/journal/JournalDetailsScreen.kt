@@ -39,6 +39,7 @@ fun JournalDetailsScreen(
     navigateToEmotionEntry: (Int) -> () -> Unit,
     navigateToThoughtEntry: (Int) -> () -> Unit,
     navigateToEmotionEdit: (Int) -> (Int) -> Unit,
+    navigateToThoughtEdit: (Int) -> (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: JournalDetailsViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
@@ -71,7 +72,7 @@ fun JournalDetailsScreen(
 
             ThoughtsTable(
                 thoughts = uiState.value.thoughtDetails,
-                onThoughtPressed = {},
+                onThoughtPressed = navigateToThoughtEdit(uiState.value.journalDetails.id),
                 navigateToThoughtEntry = navigateToThoughtEntry(uiState.value.journalDetails.id)
             )
         }

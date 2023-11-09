@@ -78,3 +78,9 @@ fun Thought.toThoughtDetails(): ThoughtDetails = ThoughtDetails(
     distortions = distortions,
     positiveThought = positiveThought,
 )
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun Thought.toThoughtUiState(isEntryValid: Boolean = false): ThoughtUiState = ThoughtUiState(
+    thoughtDetails = this.toThoughtDetails(),
+    isEntryValid = isEntryValid
+)
